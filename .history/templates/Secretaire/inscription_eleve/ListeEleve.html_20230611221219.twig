@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des Utilisateurs{% endblock %}
+
+{% block body %}
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="row page-titles mx-0">
+            <div class="col-sm-6 p-md-0">
+                <div class="welcome-text">
+                    <h4>Bienvenu</h4>
+                   
+                </div>
+            </div>
+            <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="javascript:void(0)">Eleve</a></li>
+                    <li class="breadcrumb-item active"><a href="javascript:void(0)">Liste</a></li>
+                </ol>
+            </div>
+        </div>
+        <!-- row -->
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> <a href="{{ path('inscription_eleve_ajouter') }}" class="btn btn-warning">Ajouter un Eleve</a></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Prenom</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Date Naissance</th>
+                                        <th scope="col">Lieu Naissance</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">Password</th>
+                                        <th scope="col">Sexe</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                {% for user in inscriptions %} 
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ loop.index }}</td>
+                                            <td>{{ user.nom}}</td>
+                                            <td>{{ user.prenom }}</td>
+                                            <td>{{ user.email }}</td>
+                                            <td>{{ user.dateNaissance|date}}</td>
+                                            <td>{{ user.LieuNaissnace }}</td>
+                                            <td class="badge bg-success">Eleve</td>
+                                            <td>{{ user.password }}</td>
+                                            <td>{{ user.sexe}}</td>
+                                            <td><a href="" class="btn btn-primary">modifier</a></td>   
+                                        </tr>
+                                    </tbody>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
